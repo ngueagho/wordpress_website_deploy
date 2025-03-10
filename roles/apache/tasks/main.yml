@@ -18,7 +18,11 @@
   template:
     src: "wordpress.conf.j2"
     dest: "/etc/apache2/sites-available/{{ item }}.conf"
+    force: yes
   loop: "{{ wordpress_sites }}"
+  loop_control:
+    index_var: idx
+
 
 - name: Activer les sites Apache
   command: "a2ensite {{ item }}.conf"

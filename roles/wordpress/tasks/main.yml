@@ -8,14 +8,19 @@
     state: directory
   loop: "{{ wordpress_sites }}"
 
+
 - name: Générer les fichiers Docker Compose
   template:
     src: "docker-compose-wordpress.yml.j2"
     dest: "/opt/wordpress/{{ item }}/docker-compose.yml"
+    force: yes
   loop: "{{ wordpress_sites }}"
+  loop_control:
+    index_var: idx
 
 - name: Démarrer les sites WordPress avec Docker Compose
   docker_compose:
     project_src: "/opt/wordpress/{{ item }}"
     state: present
   loop: "{{ wordpress_sites }}"
+

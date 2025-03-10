@@ -1,0 +1,69 @@
+---
+# tasks file for delete-all
+
+- name: Désactiver les sites Apache
+  command: "a2dissite {{ item }}.conf"
+  loop: "{{ wordpress_sites }}"
+  ignore_errors: yes
+
+- name: Supprimer les fichiers de configuration Apache
+  file:
+    path: "/etc/apache2/sites-available/{{ item }}.conf"
+    state: absent
+  loop: "{{ wordpress_sites }}"
+  ignore_errors: yes
+
+- name: Supprimer les fichiers SSL Apache
+  file:
+    path: "/etc/apache2/sites-available/{{ item }}-le-ssl.conf"
+    state: absent
+  loop: "{{ wordpress_sites }}"
+  ignore_errors: yes
+
+- name: Redémarrer Apache pour appliquer les changements
+  service:
+    name: apache2
+    state: restarted
+
+- name: Supprimer les containers Docker WordPress
+  docker_container:
+    name: "wordpress_{{ item }}"
+    state: absent
+  loop: "{{ wordpress_sites }}"
+  ignore_errors: yes
+
+- name: Supprimer les containers Docker MySQL
+  docker_container:
+    name: "db_{{ item }}"
+    state: absent
+  loop: "{{ wordpress_sites }}"
+  ignore_errors: yes
+
+- name: Supprimer les volumes Docker de WordPress
+  docker_volume:
+    name: "wordpress_{{ item }}"
+    state: absent
+  loop: "{{ wordpress_sites }}"
+  ignore_errors: yes
+
+- name: Supprimer les volumes Docker de MySQL
+  docker_volume:
+    name: "db_{{ item }}"
+    state: absent
+  loop: "{{ wordpress_sites }}"
+  ignore_errors: yes
+
+- name: Supprimer les dossiers des sites WordPress
+  file:
+    path: "/opt/wordpress/{{ item }}"
+    state: absent
+  loop: "{{ wordpress_sites }}"
+  ignore_errors: yes
+
+- name: Supprimer les fichiers Docker Compose
+  file:
+    path: "/opt/wordpress/{{ item }}/docker-compose.yml"
+    state: absent
+  loop: "{{ wordpress_sites }}"
+  ignore_errors: yes
+
