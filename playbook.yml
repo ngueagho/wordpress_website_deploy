@@ -1,17 +1,19 @@
 - name: Déploiement Apache et WordPress
   hosts: webserver
   become: yes
+  become_method: sudo
+  gather_facts: no
+
   vars:
     wordpress_sites:
-      - monsite1.com
-      - monblogperso.com
-      - ecommerce-magique.com
-      - startup-geniale.com
-      - monentreprise.net
-      - unautresite.fr
-      - blog-tech.io
-      - (ajoute ici les 200 domaines réels...)
+      - wordpress.simpleachat.com
+      - wordpress.propentatech.com 
+      
+
 
   roles:
     - apache
-    - wordpress
+    - wordpress 
+
+# decomenter la ligne du dessous si vous souhaitez supprimer toutes les ressources cree jusqu'au dossiers 
+    # - delete-all
