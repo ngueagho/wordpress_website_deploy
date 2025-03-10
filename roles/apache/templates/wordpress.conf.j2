@@ -1,0 +1,16 @@
+<VirtualHost *:80>
+    ServerName {{ item }}
+
+    # Configuration du proxy inverse
+    ProxyPreserveHost On
+    ProxyRequests Off
+    ProxyPass / http://127.0.0.1:{{ 100 + loop.index }}
+    ProxyPassReverse / http://127.0.0.1:{{ 100 + loop.index }}
+
+    # Logs
+    ErrorLog ${APACHE_LOG_DIR}/{{ item }}-error.log
+    CustomLog ${APACHE_LOG_DIR}/{{ item }}-access.log combined
+RewriteEngine on
+RewriteCond %{SERVER_NAME} ={{ item }}
+RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
+</VirtualHost>

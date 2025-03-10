@@ -1,0 +1,21 @@
+---
+
+# tasks file for wordpress
+
+- name: Créer les dossiers pour chaque site
+  file:
+    path: "/opt/wordpress/{{ item }}"
+    state: directory
+  loop: "{{ wordpress_sites }}"
+
+- name: Générer les fichiers Docker Compose
+  template:
+    src: "docker-compose-wordpress.yml.j2"
+    dest: "/opt/wordpress/{{ item }}/docker-compose.yml"
+  loop: "{{ wordpress_sites }}"
+
+- name: Démarrer les sites WordPress avec Docker Compose
+  docker_compose:
+    project_src: "/opt/wordpress/{{ item }}"
+    state: present
+  loop: "{{ wordpress_sites }}"

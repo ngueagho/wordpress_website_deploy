@@ -1,0 +1,17 @@
+- name: Déploiement Apache et WordPress
+  hosts: webserver
+  become: yes
+  vars:
+    wordpress_sites:
+      - monsite1.com
+      - monblogperso.com
+      - ecommerce-magique.com
+      - startup-geniale.com
+      - monentreprise.net
+      - unautresite.fr
+      - blog-tech.io
+      - (ajoute ici les 200 domaines réels...)
+
+  roles:
+    - apache
+    - wordpress

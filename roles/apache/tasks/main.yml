@@ -1,0 +1,34 @@
+---
+# tasks file for apache
+- name: Installer Apache et Certbot
+  apt:
+    name:
+      - apache2
+      - certbot
+      - python3-certbot-apache
+    state: present
+    update_cache: yes
+
+- name: Activer les modules Apache nécessaires
+  shell: |
+    a2enmod proxy proxy_http ssl rewrite headers
+    systemctl restart apache2
+
+- name: Générer les fichiers de configuration Apache
+  template:
+    src: "wordpress.conf.j2"
+    dest: "/etc/apache2/sites-available/{{ item }}.conf"
+  loop: "{{ wordpress_sites }}"
+
+- name: Activer les sites Apache
+  command: "a2ensite {{ item }}.conf"
+  loop: "{{ wordpress_sites }}"
+
+- name: Redémarrer Apache
+  service:
+    name: apache2
+    state: restarted
+
+- name: Obtenir les certificats SSL
+  command: "certbot --apache --non-interactive --agree-tos --email admin@{{ item }} -d {{ item }}"
+  loop: "{{ wordpress_sites }}"
