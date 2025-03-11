@@ -1,6 +1,12 @@
 # Déploiement Automatisé de Sites WordPress avec Ansible
 
+<img src="https://github.com/user-attachments/assets/d32cd989-09c1-4fdf-aea4-005c88783950" alt="Aperçu du déploiement" width="1000">
+
+
+
 Ce projet fournit une configuration Ansible permettant de déployer automatiquement des sites WordPress sur des serveurs distants. Il automatise l'installation du serveur web, de la base de données, de PHP et de WordPress lui-même.
+
+En plus du déploiement, ce projet permet de lier directement les sites aux noms de domaine que vous fournissez. Il assure également la sécurisation des sites en les passant en HTTPS grâce aux certificats SSL, garantissant ainsi une connexion sécurisée pour les utilisateurs.
 
 ## Prérequis
 
@@ -12,6 +18,7 @@ Ce projet fournit une configuration Ansible permettant de déployer automatiquem
   
 - **Docker Compose** : Docker Compose est également requis pour orchestrer les conteneurs WordPress, MySQL et PHPMyAdmin. Installez-le en suivant les instructions [ici](https://docs.docker.com/compose/install/).
 
+- **Record Dns**: preparez un enregistrement dns de type A dans lequel pour l'addresse IP vous fournirez l'IP de votre server.
 
 ## Structure du Projet
 
