@@ -142,6 +142,7 @@ wordpress_website_deploy/
     ```bash
     ansible -i inventory.ini -m ping all 
     ```
+   ![Aperçu du déploiement](validate.png)
 
 3. Exécutez le playbook pour déployer WordPress :
 
@@ -149,10 +150,12 @@ wordpress_website_deploy/
     ansible-playbook -i inventory.ini playbook.yml
     ```
     - faite le uniquement si l'etape precedente a marque success
+       ![Aperçu du déploiement](apply.png)
+
 
 ## Personnalisation
 
-- **Rôles** : Les rôles pour Apache, MySQL, PHP et WordPress peuvent être personnalisés en modifiant les tâches correspondantes dans le répertoire `roles/`.
+- **Rôles** : Les rôles pour Apache , WordPress et delete-all peuvent être personnalisés en modifiant les tâches correspondantes dans le répertoire `roles/`.
 
 - **Templates** : Les fichiers de configuration modèles (`.j2`) peuvent être ajustés selon vos besoins spécifiques.
 
@@ -172,7 +175,7 @@ Pour plus d'informations sur l'utilisation d'Ansible pour déployer des applicat
 
 ## Auteurs
 
-Ce projet a été initié par [Votre Nom] et est maintenu par la communauté. Les contributions sont les bienvenues.
+Ce projet a été initié par [TIODONG ROBERTO LANDRY] et est maintenu par la communauté. Les contributions sont les bienvenues.
 
 ## Licence
 
