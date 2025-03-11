@@ -104,27 +104,27 @@ wordpress_website_deploy/
 
 2. **Fichier de Playbook (`playbook.yml`)** : Définissez les noms de domaines pour vos deploiments .
 
-```
-- name: Déploiement Apache et WordPress
-  hosts: webserver
-  become: yes
-  become_method: sudo
-  gather_facts: no
-
-  vars:
-    wordpress_sites:
-      - wordpress.simpleachat.com
-      - wordpress.propentatech.com 
-      # ajouter tout les autres noms de domaines ici
-      
-  roles:
-    - apache
-    - wordpress 
-
-# decomenter la ligne du dessous si vous souhaitez supprimer toutes les ressources cree jusqu'au dossiers 
-    # - delete-all
-
-```
+    ```
+    - name: Déploiement Apache et WordPress
+      hosts: webserver
+      become: yes
+      become_method: sudo
+      gather_facts: no
+    
+      vars:
+        wordpress_sites:
+          - wordpress.simpleachat.com
+          - wordpress.propentatech.com 
+          # ajouter tout les autres noms de domaines ici
+          
+      roles:
+        - apache
+        - wordpress 
+    
+    # decomenter la ligne du dessous si vous souhaitez supprimer toutes les ressources cree jusqu'au dossiers 
+        # - delete-all
+    
+    ```
 - si vous souhaitez supprimer toutes les ressources crees , decommentez la ligne delete-all
    
 
