@@ -7,12 +7,10 @@
   vars:
     wordpress_sites:
       - wordpress.simpleachat.com
-      - wordpress.propentatech.com 
+      - wordpress.propentatech.com
+      - nitoukou.propentatech.com
       # ajouter tout les autres noms de domaines ici
       
-      
-
-
   roles:
     - apache
     - wordpress 
