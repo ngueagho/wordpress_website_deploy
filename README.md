@@ -176,8 +176,6 @@ wordpress_website_deploy/
 
 Pour plus d'informations sur l'utilisation d'Ansible pour déployer des applications comme WordPress, consultez les ressources suivantes :
 
-- [Automatiser l'installation et la configuration de WordPress avec Ansible](https://www.digitalocean.com/community/tutorials/how-to-use-ansible-to-install-and-set-up-wordpress-with-lamp-on-ubuntu-18-04-fr)
-
 - [Documentation Ansible](https://docs.ansible.com/ansible/latest/index.html)
 
 ## Auteurs
