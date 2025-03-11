@@ -182,7 +182,7 @@ Pour plus d'informations sur l'utilisation d'Ansible pour déployer des applicat
 
 ## Auteurs
 
-Ce projet a été initié par [TIODONG ROBERTO LANDRY] et est maintenu par la communauté. Les contributions sont les bienvenues.
+Ce projet a été initié par [TIODONG ROBERTO LANDRY](https://www.linkedin.com/in/roberto-landry-ngueagho-tiodong-7a0989223/) et est maintenu par la communauté. Les contributions sont les bienvenues.
 
 ## Licence
 
